@@ -1,19 +1,75 @@
 <html>
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
-<!--  If necessary, please modify the charset parameter to specify the        -->
-<!--  character set of your HTML page.                                        -->
-<!--  ----------------------------------------------------------------------  -->
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        background:#f5f5f5;
+        padding:40px;
+    }
 
-<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script>
- function timestamp() { var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500); 
-</script>
+    .webtolead{
+        max-width:500px;
+        margin:auto;
+        background:#fff;
+        padding:30px;
+        border-radius:8px;
+        box-shadow:0 2px 10px rgba(0,0,0,.15);
+    }
 
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: Please add the following <FORM> element to your page.             -->
-<!--  ----------------------------------------------------------------------  -->
+    .webtolead h2{
+        text-align:center;
+        margin-bottom:25px;
+        color:#333;
+    }
+
+    .field{
+        margin-bottom:18px;
+    }
+
+    .field label{
+        display:block;
+        font-weight:bold;
+        margin-bottom:6px;
+        color:#333;
+    }
+
+    .field input,
+    .field select{
+        width:100%;
+        padding:10px;
+        border:1px solid #ccc;
+        border-radius:4px;
+        font-size:14px;
+        box-sizing:border-box;
+    }
+
+    .captcha{
+        margin:25px 0;
+        display:flex;
+        justify-content:center;
+    }
+
+    .submit{
+        text-align:center;
+    }
+
+    .submit input{
+        background:#0176d3;
+        color:#fff;
+        border:none;
+        padding:12px 30px;
+        border-radius:4px;
+        font-size:16px;
+        cursor:pointer;
+    }
+
+    .submit input:hover{
+        background:#005fb2;
+    }
+</style>
+
+<div class="webtolead">
+
+<h2>Contact Us</h2>
 
 <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DO9000007wKVN" method="POST">
 
@@ -28,30 +84,55 @@
 <!--  <input type="hidden" name="debugEmail" value="fery2j@live.com.mx">      -->
 <!--  ----------------------------------------------------------------------  -->
 
-<label for="first_name">First Name</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
+<div class="field">
+    <label for="first_name">First Name</label>
+    <input id="first_name" maxlength="40" name="first_name" type="text" />
+</div>
 
-<label for="last_name">Last Name</label><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
+<div class="field">
+    <label for="last_name">Last Name</label>
+    <input id="last_name" maxlength="80" name="last_name" type="text" />
+</div>
 
-<label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
+<div class="field">
+    <label for="phone">Phone</label>
+    <input id="phone" maxlength="40" name="phone" type="text" />
+</div>
 
-<label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
+<div class="field">
+    <label for="email">Email</label>
+    <input id="email" maxlength="80" name="email" type="text" />
+</div>
 
-<label for="company">Company</label><input  id="company" maxlength="40" name="company" size="20" type="text" /><br>
+<div class="field">
+    <label for="company">Company</label>
+    <input id="company" maxlength="40" name="company" type="text" />
+</div>
 
-How do you want to work with adFUZE?:<select  id="00NPP000003XYsP" name="00NPP000003XYsP" title="How do you want to work with adFUZE?"><option value="">--None--</option><option value="Direct Advertising">Direct Advertising</option>
-<option value="Programmatic Advertising">Programmatic Advertising</option>
-<option value="Sponsorship Opportunities">Sponsorship Opportunities</option>
-<option value="Other">Other</option>
-</select><br>
+<div class="field">
+    <label for="00NPP000003XYsP">How do you want to work with adFUZE?</label>
+    <select id="00NPP000003XYsP" name="00NPP000003XYsP" title="How do you want to work with adFUZE?">
+        <option value="">--None--</option>
+        <option value="Direct Advertising">Direct Advertising</option>
+        <option value="Programmatic Advertising">Programmatic Advertising</option>
+        <option value="Sponsorship Opportunities">Sponsorship Opportunities</option>
+        <option value="Other">Other</option>
+    </select>
+</div>
 
-<input type="hidden"  id="lead_source" name="lead_source" value="Website" /><br>
-
+<input type="hidden" id="lead_source" name="lead_source" value="Website" />
 <input type="hidden" name="recordType" value="012Dn000000vQkeIAE">
+<input type="hidden" id="Lead_Category__c" name="Lead_Category__c" value="Advertising" />
 
-<input type="hidden"  id="Lead_Category__c" name="Lead_Category__c" value="Advertising" />
+<div class="captcha">
+    <div class="g-recaptcha" data-sitekey="6LfXkPAqAAAAANq320dZoQxGW-tLW7hVAMiI55Aw"></div>
+</div>
 
-<div class="g-recaptcha" data-sitekey="6LfXkPAqAAAAANq320dZoQxGW-tLW7hVAMiI55Aw"></div><br>
-<input type="submit" name="submit">
+<div class="submit">
+    <input type="submit" name="submit" value="Submit">
+</div>
 
 </form>
+
+</div>
 </html>
