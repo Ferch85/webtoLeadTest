@@ -1,219 +1,296 @@
  <html>
-<head>
-<meta charset="UTF-8">
-<title>adFUZE Contact Form</title>
-
-<style>
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background:#f5f5f5;
-    margin:40px;
-}
-
-.webtolead{
-    max-width:550px;
-    margin:auto;
-    background:#ffffff;
-    padding:30px;
-    border-radius:8px;
-    box-shadow:0 2px 10px rgba(0,0,0,.12);
-}
-
-.webtolead h2{
-    margin-top:0;
-    text-align:center;
-    color:#333;
-}
-
-.webtolead p{
-    text-align:center;
-    color:#666;
-    margin-bottom:30px;
-}
-
-.field{
-    margin-bottom:18px;
-}
-
-.field label{
-    display:block;
-    margin-bottom:6px;
-    font-weight:bold;
-    color:#333;
-}
-
-.field input,
-.field select{
-    width:100%;
-    padding:10px;
-    font-size:14px;
-    border:1px solid #ccc;
-    border-radius:4px;
-    box-sizing:border-box;
-}
-
-.submit{
-    text-align:center;
-    margin-top:25px;
-}
-
-.submit input{
-    background:#0176d3;
-    color:white;
-    border:none;
-    padding:12px 35px;
-    font-size:16px;
-    border-radius:4px;
-    cursor:pointer;
-}
-
-.submit input:hover{
-    background:#005fb2;
-}
-</style>
-
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
+<!--  If necessary, please modify the charset parameter to specify the        -->
+<!--  character set of your HTML page.                                        -->
+<!--  ----------------------------------------------------------------------  -->
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
-function timestamp() {
-    var response = document.getElementById("g-recaptcha-response");
-
-    if (response == null || response.value.trim() == "") {
-        var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);
-        elems.ts = JSON.stringify(new Date().getTime());
-        document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems);
-    }
-}
-
-setInterval(timestamp, 500);
+ function timestamp() { var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500);
 </script>
 
-</head>
+<style>
+  :root{
+    --ink:#0A0E1A;
+    --panel:#121a2e;
+    --panel-line:#233047;
+    --cyan:#35E7C9;
+    --blue:#4F7CFF;
+    --text:#F4F6FB;
+    --muted:#8C9AB8;
+  }
 
-<body>
+  .fuze-wrap *{ box-sizing:border-box; }
 
-<form class="webtolead"
-      action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DO9000007wKVN"
-      method="POST">
+  .fuze-wrap{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:
+      radial-gradient(circle at 18% 20%, rgba(79,124,255,.18), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(53,231,201,.14), transparent 40%),
+      var(--ink);
+    color:var(--text);
+    padding:64px 20px;
+    position:relative;
+    overflow:hidden;
+  }
 
-    <input type="hidden"
-           name="captcha_settings"
-           value='{"keyname":"personalKeys","fallback":"true","orgId":"00DO9000007wKVN","ts":""}'>
+  /* faint connective dot-grid, nodding to an IoT network */
+  .fuze-wrap::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(rgba(140,154,184,.16) 1px, transparent 1px);
+    background-size:26px 26px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 85%);
+    pointer-events:none;
+  }
 
-    <input type="hidden" name="oid" value="00DO9000007wKVN">
-    <input type="hidden" name="retURL" value="http://chargefuze.com">
+  .fuze-card{
+    position:relative;
+    max-width:480px;
+    margin:0 auto;
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.6);
+    padding:44px 40px;
+  }
 
-    <input type="hidden"
-           id="lead_source"
-           name="lead_source"
-           value="Website">
+  .fuze-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .fuze-eyebrow::before{
+    content:"";
+    width:7px; height:7px; border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 0 4px rgba(53,231,201,.18);
+  }
 
-    <input type="hidden"
-           name="recordType"
-           value="012Dn000000vQkeIAE">
+  .fuze-card h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:24px;
+    margin:0 0 6px;
+  }
+  .fuze-card .fuze-sub{
+    color:var(--muted);
+    font-size:13.5px;
+    margin:0 0 26px;
+  }
 
-    <input type="hidden"
-           id="Lead_Category__c"
-           name="Lead_Category__c"
-           value="Advertising">
+  .fuze-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
 
-    <h2>Contact Us</h2>
+  .fuze-field{ margin-bottom:16px; }
 
-    <p>
-        Complete the form below and an adFUZE representative will contact you shortly.
-    </p>
+  .fuze-field.fuze-hidden{ display:none; }
 
-    <div class="field">
-        <label for="first_name">First Name</label>
-        <input
-            id="first_name"
-            name="first_name"
-            maxlength="40"
-            type="text">
-    </div>
+  .fuze-field label{
+    display:block;
+    font-size:12.5px;
+    font-weight:600;
+    color:#B7C0D6;
+    margin-bottom:7px;
+  }
 
-    <div class="field">
-        <label for="last_name">Last Name</label>
-        <input
-            id="last_name"
-            name="last_name"
-            maxlength="80"
-            type="text"
-            required>
-    </div>
+  .fuze-field input,
+  .fuze-field select,
+  .fuze-field textarea{
+    width:100%;
+    background:#0D1322;
+    border:1px solid var(--panel-line);
+    border-radius:10px;
+    padding:11px 13px;
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    color:var(--text);
+    outline:none;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
 
-    <div class="field">
-        <label for="phone">Phone</label>
-        <input
-            id="phone"
-            name="phone"
-            maxlength="40"
-            type="text">
-    </div>
+  .fuze-field input::placeholder,
+  .fuze-field textarea::placeholder{ color:#5C6784; }
 
-    <div class="field">
-        <label for="email">Email</label>
-        <input
-            id="email"
-            name="email"
-            maxlength="80"
-            type="email"
-            required>
-    </div>
+  .fuze-field input:focus,
+  .fuze-field select:focus,
+  .fuze-field textarea:focus{
+    border-color:var(--cyan);
+    box-shadow:0 0 0 3px rgba(53,231,201,.15);
+  }
 
-    <div class="field">
-        <label for="company">Company</label>
-        <input
-            id="company"
-            name="company"
-            maxlength="40"
-            type="text"
-            required>
-    </div>
+  .fuze-field select{
+    appearance:none;
+    background-image:linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+                      linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 13px) calc(50% - 3px);
+    background-size:5px 5px, 5px 5px;
+    background-repeat:no-repeat;
+  }
 
-    <div class="field">
-        <label for="00NPP000003XYsP">
-            How do you want to work with adFUZE?
-        </label>
+  .fuze-field textarea{ resize:vertical; min-height:88px; }
 
-        <select
-            id="00NPP000003XYsP"
-            name="00NPP000003XYsP"
-            title="How do you want to work with adFUZE?">
+  .g-recaptcha{ margin:6px 0 20px; transform:scale(0.93); transform-origin:0 0; }
 
-            <option value="">-- Select an option --</option>
-            <option value="Direct Advertising">
-                Direct Advertising
-            </option>
-            <option value="Programmatic Advertising">
-                Programmatic Advertising
-            </option>
-            <option value="Sponsorship Opportunities">
-                Sponsorship Opportunities
-            </option>
-            <option value="Other">
-                Other
-            </option>
+  .fuze-submit{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    width:100%;
+    justify-content:center;
+    background:linear-gradient(90deg, var(--blue), var(--cyan));
+    color:#08101F;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    border:none;
+    border-radius:10px;
+    padding:13px 20px;
+    cursor:pointer;
+    transition:transform .15s ease, filter .15s ease;
+  }
+  .fuze-submit:hover{ filter:brightness(1.08); transform:translateY(-1px); }
 
-        </select>
+  .fuze-legal{
+    color:var(--muted);
+    font-size:11.5px;
+    margin-top:12px;
+    line-height:1.5;
+  }
 
-    </div>
+  @media (max-width:520px){
+    .fuze-card{ padding:34px 26px; }
+    .fuze-row{ grid-template-columns:1fr; }
+  }
+</style>
 
-    <div class="field" style="text-align:center;">
-        <div class="g-recaptcha"
-             data-sitekey="6LfXkPAqAAAAANq320dZoQxGW-tLW7hVAMiI55Aw">
+<div class="fuze-wrap">
+  <div class="fuze-card">
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- Web-to-Lead form: field names, hidden inputs, action URL, and      -->
+    <!-- picklist values are unchanged from the original Salesforce markup. -->
+    <!-- ------------------------------------------------------------------ -->
+    <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DO9000007wKVN" method="POST">
+
+      <input type=hidden name='captcha_settings' value='{"keyname":"personalKeys","fallback":"true","orgId":"00DO9000007wKVN","ts":""}'>
+      <input type=hidden name="oid" value="00DO9000007wKVN">
+      <input type=hidden name="retURL" value="http://fuzetechnology.com/contact">
+      <input type="hidden" id="lead_source" name="lead_source" value="Website">
+      <input type="hidden" name="recordType" value="012O900000EFZWsIAP">
+      <input type="hidden" id="Lead_Category__c" name="Lead_Category__c" value="Fuze Technology">
+      <!--  ----------------------------------------------------------------------  -->
+      <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+      <!--  these lines if you wish to test in debug mode.                          -->
+      <!--  <input type="hidden" name="debug" value=1>                              -->
+      <!--  <input type="hidden" name="debugEmail"                                  -->
+      <!--  value="guerrerocesarw22@gmail.com">                                     -->
+      <!--  ----------------------------------------------------------------------  -->
+
+      <div class="fuze-row">
+        <div class="fuze-field">
+          <label for="first_name">First name</label>
+          <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="Jane" />
         </div>
-    </div>
+        <div class="fuze-field">
+          <label for="last_name">Last name</label>
+          <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="Doe" />
+        </div>
+      </div>
 
-    <div class="submit">
-        <input
-            type="submit"
-            name="submit"
-            value="Submit">
-    </div>
+      <div class="fuze-row">
+        <div class="fuze-field">
+          <label for="email">Email</label>
+          <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="jane@company.com" />
+        </div>
+        <div class="fuze-field">
+          <label for="phone">Phone</label>
+          <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="(555) 555-5555" />
+        </div>
+      </div>
 
-</form>
+      <div class="fuze-row">
+        <div class="fuze-field">
+          <label for="company">Company</label>
+          <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="Company name" />
+        </div>
+        <div class="fuze-field">
+          <label for="url">Website</label>
+          <input id="url" maxlength="80" name="url" size="20" type="text" placeholder="www.company.com" />
+        </div>
+      </div>
 
-<script src="https://www.google.com/recaptcha/api.js"></script>
+      <div class="fuze-field">
+        <label for="00NPP000003XYsP">How do you want to work with FUZE?</label>
+        <select id="00NPP000003XYsP" name="00NPP000003XYsP" title="How can adFUZE help?">
+          <option value="">--None--</option>
+          <option value="chargeFUZE Portable Charging">chargeFUZE Portable Charging</option>
+          <option value="adFUZE DOOH">adFUZE DOOH</option>
+          <option value="Media and Partnerships">Media and Partnerships</option>
+          <option value="Investment Opportunities">Investment Opportunities</option>
+          <option value="Career Opportunities">Career Opportunities</option>
+          <option value="General Inquiry">General Inquiry</option>
+        </select>
+      </div>
 
-</body>
+      <!-- Only relevant, and only shown, when "chargeFUZE Portable Charging" is selected above -->
+      <div class="fuze-field fuze-hidden" id="fuze-additional-field">
+        <label for="00NO900000l1Fun">Additional</label>
+        <select id="00NO900000l1Fun" name="00NO900000l1Fun" title="Fuze Technology Additional">
+          <option value="">--None--</option>
+          <option value="For Business">For Business</option>
+          <option value="For Distributors">For Distributors</option>
+          <option value="For Events">For Events</option>
+        </select>
+      </div>
+
+      <div class="fuze-field">
+        <label for="00NPP000002NJX3">Please share any details:</label>
+        <textarea id="00NPP000002NJX3" name="00NPP000002NJX3" rows="4" placeholder="Please share any details" wrap="soft"></textarea>
+      </div>
+
+      <input type="hidden" id="lead_source" name="lead_source" value="Web" />
+
+      <div class="g-recaptcha" data-sitekey="6LfXkPAqAAAAANq320dZoQxGW-tLW7hVAMiI55Aw"></div>
+
+      <button class="fuze-submit" type="submit" name="submit">Submit →</button>
+ 
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var trigger = document.getElementById("00NPP000003XYsP");
+    var additionalField = document.getElementById("fuze-additional-field");
+    var additionalSelect = document.getElementById("00NO900000l1Fun");
+
+    function toggleAdditionalField() {
+      if (trigger.value === "chargeFUZE Portable Charging") {
+        additionalField.classList.remove("fuze-hidden");
+      } else {
+        additionalField.classList.add("fuze-hidden");
+        additionalSelect.value = ""; // reset so a stale value isn't submitted once hidden
+      }
+    }
+
+    trigger.addEventListener("change", toggleAdditionalField);
+    toggleAdditionalField(); // set correct state on load
+  })();
+</script>
+
 
 </html>
