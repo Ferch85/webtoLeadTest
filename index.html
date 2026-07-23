@@ -296,7 +296,7 @@
     trigger.addEventListener("change", toggleAdditionalField);
     toggleAdditionalField();
     form.addEventListener("submit",function(e){
-      var req=["first_name","last_name","email","company","00NPP000003XYsP"];
+      var req=["first_name","last_name","email","00NPP000003XYsP"];
       var ok=true;
       req.forEach(function(id){var f=document.getElementById(id);f.style.borderColor="";if(!f.value.trim()){f.style.borderColor="#ff6b6b";ok=false;}});
       additionalSelect.style.borderColor="";
